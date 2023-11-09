@@ -1,10 +1,91 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>Sample Template</title>
+    <meta charset="UTF-8">
+
+    <title>Best Cars - Contact Us</title>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
+    <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
+    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
+    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
+
 </head>
-<body>
-    <h1>Hello, Django!</h1>
-    <p>This is a static Django template.</p>
-</body>
+    <body>
+    <header>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Best Cars</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar">
+                    <li class="nav-item active">
+                        <a class="nav-link" href="../">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Dealers</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../about">About Us</a>
+                    </li>
+                    <li class="nav-item disabled">
+                        <a class="nav-link" href="../contact">Contact Us</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <br>
+
+    </header>
+    <main>
+    <h1 style="font-size: 20px; padding-left: 20px;">
+        Find below the best way to contact us!
+    </h1>
+    <br>
+    <section style="font-size: 16px; padding-left: 20px;">
+        <h2 style="font-size: 16px;" >Best Cars Dealership Headquarters:</h2>
+        <address>
+            1234 Auto Avenue,<br>
+            Cityville, NV 56789<br>
+            United States
+        </address>   
+    </section>
+
+    <section style="font-size: 16px; padding-left: 20px;">
+        <h2 style="font-size: 16px;" >Phone:</h2>
+        <p>
+            Main Office: <tel>(555) 123-4567</tel><br>
+            Sales Department: <tel>(555) 987-6543</tel><br>
+            Customer Service: <tel>(555) 789-0123</tel>
+        </p>
+    </section>
+
+    <section style="font-size: 16px; padding-left: 20px;">
+        <h2 style="font-size: 16px;" >Email:</h2>
+        <p>
+            General Inquiries: <a href="mailto:info@bestcarsdealership.com">info@bestcarsdealership.com</a><br>
+            Sales Department: <a href="mailto:sales@bestcarsdealership.com">sales@bestcarsdealership.com</a><br>
+            Customer Support: <a href="mailto:support@bestcarsdealership.com">support@bestcarsdealership.com</a>
+        </p>
+    </section>
+
+    <section style="font-size: 16px; padding-left: 20px;">
+        <h2 style="font-size: 16px;" >Business Hours:</h2>
+        <p>
+            Monday - Friday: <time datetime="09:00">9:00 AM</time> - <time datetime="18:00">6:00 PM</time><br>
+            Saturday: <time datetime="10:00">10:00 AM</time> - <time datetime="16:00">4:00 PM</time><br>
+            Sunday: Closed
+        </p>
+    </section>
+
+    </main>
+    </body>
+
 </html>
