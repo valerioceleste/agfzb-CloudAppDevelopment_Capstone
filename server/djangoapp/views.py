@@ -20,6 +20,7 @@ logger = logging.getLogger(__name__)
 # Create an `about` view to render a static about page
 def about(request):
     context = {}
+
     return render(request, 'djangoapp/about.html', context)
 # ...
 
@@ -56,7 +57,7 @@ def registration_request(request):
     context = {}
     # If it is a GET request, just render the registration page
     if request.method == 'GET':
-        return render(request, 'onlinecourse/user_registration.html', context)
+        return render(request, 'djangoapp/registration.html', context)
     # If it is a POST request
     elif request.method == 'POST':
         # Get user information from request.POST
@@ -79,9 +80,9 @@ def registration_request(request):
                                             password=password)
             # Login the user and redirect to course list page
             login(request, user)
-            return redirect("onlinecourse:popular_course_list")
+            return redirect("djangoapp:index")
         else:
-            return render(request, 'onlinecourse/user_registration.html', context)
+            return render(request, 'djangoapp/registration.html', context)
 
 # Update the `get_dealerships` view to render the index page with a list of dealerships
 def get_dealerships(request):

@@ -1,53 +1,14 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
+{% extends 'djangoapp/base.html' %}
 
-    <title>Best Cars - About Us</title>
+{% block title %}About Us{% endblock %}
 
-    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script>
-    <link href="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.css" rel="stylesheet">
-    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/bootstrap-table.min.js"></script>
-    <script src="https://unpkg.com/bootstrap-table@1.18.2/dist/extensions/filter-control/bootstrap-table-filter-control.min.js"></script>
-
-</head>
-
-    <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container-fluid">
-            <a class="navbar-brand" href="#">Best Cars</a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-                <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="nav navbar">
-                    <li class="nav-item active">
-                        <a class="nav-link" href="../">Home</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="#">Dealers</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="../about">About Us</a>
-                    </li>
-                    <li class="nav-item disabled">
-                        <a class="nav-link" href="../contact">Contact Us</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
-
+{% block content %} 
     <br>
 
-    <main>
     <h1 style="font-size: 20px; padding-left: 20px;">
         Welcome to Best Cars dealership, home to the best cars in North America. We sell domestic and imported cars at reasonable prices.
     </h1>
-    
+
     <p style = "font-size: 16px; padding: 20px 20px">
         Nestled in the heart of North America, our showroom is a haven for automotive 
         enthusiasts seeking not just a mode of transportation, but a symbol of style, 
@@ -61,7 +22,5 @@
         as you explore the diverse range of vehicles on our lot. Welcome to a world where 
         driving dreams come to life – welcome to Best Cars dealership.
     </p>
-    </main>
-    
-    </body>
-</html>
+{% endblock content %}
+
