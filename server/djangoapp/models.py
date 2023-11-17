@@ -1,12 +1,11 @@
 from django.db import models
-from django.utils.timezone import now
-from django.utils import timezone 
+from datetime import date
 
 
 class CarMake(models.Model):
     name = models.CharField(null=False, max_length=50)
     founded_year = models.IntegerField(null=False)
-    Country = models.CharField(null=False, max_length=50)
+    country = models.CharField(null=False, max_length=50)
     description = models.TextField(null=True)
 
     def __str__(self):
@@ -19,11 +18,12 @@ class CarModel(models.Model):
     TYPE_CHOICES = [
         ('SEDAN', 'Sedan'),
         ('SUV', 'SUV'),
+        ('CONVERTIBLE', 'Convertible'),
         ('WAGON', 'Wagon'),]
     type = models.CharField(max_length=20, choices=TYPE_CHOICES)
-    year = models.TimeField(default=timezone.now)
-    kilometers = models.IntegerField(null=True)
-    color = models.CharField(max_length=20, null=True)
+    year = models.DateField()
+    kilometers = models.IntegerField()
+    color = models.CharField(max_length=20)
 
     def __str__(self):
         return f"{self.car_make.name} {self.name}"
