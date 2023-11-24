@@ -8,7 +8,12 @@ class CarMake(models.Model):
     country = models.CharField(null=False, max_length=50)
     description = models.TextField(null=True)
     def __str__(self):
-        return self.name 
+        return (
+            "Name: " + self.name + ", " + 
+            "Founded Year: " + self.founded_year + ", " + 
+            "Country: " + self.country + ", " + 
+            "Description: " + self.description
+        )
 
 
 class CarModel(models.Model):
@@ -25,7 +30,13 @@ class CarModel(models.Model):
     kilometers = models.IntegerField()
     color = models.CharField(max_length=20)
     def __str__(self):
-        return f"{self.car_make.name} {self.name}"
+        return (
+            "Car Manufacturer: " + self.car_make + ", " + 
+            "Model Name: " + self.type + ", " + 
+            "Year: " + self.year + ", " + 
+            "Kilometers: " + self.kilometers + ", " + 
+            "Color: " + self.color
+        )
 
 
 class CarDealer:
@@ -56,4 +67,10 @@ class DealerReview:
         self.car_year = car_year
         self.sentiment = sentiment
     def __str__(self):
-        return "Dealer review: " + self.review 
+        return (
+            "Dealer Name: " + self.name + ", " + 
+            "Purchase: " + self.purchase + ", " + 
+            "Purchase Date: " + self.purchase_date + ", " + 
+            "Review: " + self.review + ", " + 
+            "Sentiment: " + self.sentiment
+        )
