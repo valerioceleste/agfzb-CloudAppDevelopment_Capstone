@@ -3,26 +3,28 @@
 {% block title %}Home{% endblock title %}
 
 {% block content %}
-<br>
-<h1>Welcome to Best Cars!</h1>
-<p>Find or best dealers around you.</p>
-<br>
-<table class="table" id="table">
+<br><br>
+<div style='text-align: center;'>
+    <h1>Welcome to Best Cars!</h1>
+    <p>Find our best dealers jsut around you.</p>
+</div>
+<div class="container">
+<table class="table" id="table" data-filter-control="true">
     <thead>
-        <tr>
-            <th scope="col">ID</th>
-            <th scope="col">Dealer Name</th>
-            <th scope="col">City</th>
-            <th scope="col">Address</th>
-            <th scope="col">Zip</th>
-            <th scope="col" data-field="state" data-filter-control="select">State</th>
+         <tr>
+            <th data-field="id">ID</th>
+            <th data-field="name">Dealer Name</th>
+            <th data-field="city">City</th>
+            <th data-field="address">Address</th>
+            <th data-field="zip">Zip</th>
+            <th data-field="state" data-filter-control="select">State</th>
         </tr>
     </thead>
     <tbody>
         {% for dealer in dealership_list %}
             <tr>
                 <td scope="row">{{dealer.id}}</th>
-                    <td><a href="{% url 'djangoapp:dealer_details' dealer.id %}">{{dealer.full_name}}</a></td>
+                <td><a href="{% url 'djangoapp:dealer_details' dealer.id %}">{{dealer.full_name}}</a></td>
                 <td>{{dealer.city}}</th>
                 <td>{{dealer.address}}</th>
                 <td>{{dealer.zip}}</th>
@@ -31,6 +33,7 @@
         {% endfor %}
     </tbody>
 </table>
+</div>
 {% endblock content %}
 {% block script %}
     <script>
