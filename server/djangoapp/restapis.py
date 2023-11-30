@@ -2,6 +2,9 @@ import requests
 import json
 from .models import CarDealer, DealerReview
 from requests.auth import HTTPBasicAuth
+from ibm_cloud_sdk_core.authenticators import IAMAuthenticator
+from ibm_watson import NaturalLanguageUnderstandingV1
+from ibm_watson.natural_language_understanding_v1 import Features,SentimentOptions
 
 watson_url = "https://api.au-syd.natural-language-understanding.watson.cloud.ibm.com/instances/d15a87f6-318d-4f07-97bf-84503f7d0e9f"
 watson_api_key = "A7Evk7Tq9ecLnX3ZHW4zAXPsxXl-NtOWnCqCcA6Nwdh-"
@@ -130,21 +133,18 @@ def get_dealer_reviews_from_cf(url, **kwargs):
             print(dealer_review)
     return results
 
-def analyze_review_sentiments(dealerreview):
-    body = {"text": dealerreview, "features": {"sentiment": {"document": True}}}
-    print(dealerreview)
-    response = requests.post(
-        watson_url + "/v1/analyze?version=2019-07-12",
-        headers={"Content-Type": "application/json"},
-        json=body,  # Use json parameter for automatic conversion
-        auth=HTTPBasicAuth("apikey", watson_api_key),
-    )
 
-    # Check if request was successful
-    if response.status_code == 200:
-        sentiment = response.json()["sentiment"]["document"]["label"]
-        return sentiment
-    return "n/a"
+def analyze_review_sentiments(text):
+    url = "https://api.us-south.natural-language-understanding.watson.cloud.ibm.com/instances/5bb69077-cc5b-48eb-9f17-ceb25300b5b5"
+    api_key = "7XvnkavpYfv-_OTr7Jsn0XoAIu1S7AcW_yGOMvYUzTSf"
+    authenticator = IAMAuthenticator(api_key)
+    natural_language_understanding = NaturalLanguageUnderstandingV1(version='2021-08-01',authenticator=authenticator)
+    natural_language_understanding.set_service_url(url)
+    response = natural_language_understanding.analyze( text=text+"hello hello hello",features=Features(sentiment=SentimentOptions(targets=[text+"hello hello hello"]))).get_result()
+    label=json.dumps(response, indent=2)
+    label = response['sentiment']['document']['label']
+    
+    return(label)
 
 def post_review(url, review_json_payload):
     response = post_requests(url, review_json_payload)
