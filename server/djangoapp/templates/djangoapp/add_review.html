@@ -2,7 +2,53 @@
 
 {% block title %}Add Review{% endblock %}
 
-{% block content %} 
+{% block content %}
+
+<br><br>
+<h1 style="text-align: center;">Add a review about <b>{{ dealer.full_name }}</b></h1>
+<br>
+    
+<div class="container">
+    <form action="{% url 'djangoapp:add_review' dealer.id %}">
+
+        <div class="form-group">
+            <label for="content"><b>Enter the review content:</b></label>
+            <textarea class="form-control" id="content" name="content" rows="4" required placeholder="Write your review here"></textarea>       
+        </div>
+
+        <div class="form-check">
+            <input class="form-check-input" type="checkbox" name="purchasecheck" id="purchasecheck">
+            <label class="form-check-label" for="purchasecheck">Has purchased the car from {{dealer.full_name}} ?</label>
+            <label class="text-muted">(select purchased car information below if checked)</label>
+        </div><br>
+
+        <div class="form-select">
+            <label for="car"><b>Select Your Car ( Make - Model - Year ) : </b></label>
+            <select name="car" id="car" class="form-select" required>
+                {% for car in cars %}
+                <option selected value={{car.id}}>{{car.CarMake}} - {{car.name}} - {{car.year|date:"Y" }}</option>
+                {% endfor %}
+            </select>
+        </div><br>
+        
+        <div class="form-group">
+            <label for="purchasedate"><b>Select your Purchase Date:</b></label>
+            <input class="date-own form-control" style="width: 300px;" type="text" name="purchasedate" id="purchasedate" placeholder="mm/dd/yyyy">
+        </div>
+    </form>
+    <button class="btn btn-primary" type="submit">Submit</button>
+</div>
+
+    
+
 
 {% endblock content %}
+
+{% block script %}
+
+<script type="text/javascript">
+    $('.date-own').datepicker({format: 'mm/dd/yyyy'});
+</script>
+
+{% endblock script %}
 
