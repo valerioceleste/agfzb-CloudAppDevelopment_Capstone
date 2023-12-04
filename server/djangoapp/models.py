@@ -1,20 +1,14 @@
 from django.db import models
 from datetime import date
 
-
 class CarMake(models.Model):
     name = models.CharField(null=False, max_length=50)
     founded_year = models.IntegerField(null=False)
     country = models.CharField(null=False, max_length=50)
     description = models.TextField(null=True)
+    
     def __str__(self):
-        return (
-            "Name: " + self.name + ", " + 
-            "Founded Year: " + self.founded_year + ", " + 
-            "Country: " + self.country + ", " + 
-            "Description: " + self.description
-        )
-
+        return (self.name)
 
 class CarModel(models.Model):
     car_make = models.ForeignKey(CarMake, on_delete=models.CASCADE)
@@ -24,20 +18,21 @@ class CarModel(models.Model):
         ('SEDAN', 'Sedan'),
         ('SUV', 'SUV'),
         ('CONVERTIBLE', 'Convertible'),
-        ('WAGON', 'Wagon'),]
+        ('WAGON', 'Wagon'),
+    ]
     type = models.CharField(max_length=20, choices=TYPE_CHOICES)
-    year = models.DateField()
+    year = models.IntegerField() 
     kilometers = models.IntegerField()
     color = models.CharField(max_length=20)
+    
     def __str__(self):
         return (
-            "Car Manufacturer: " + self.car_make + ", " + 
-            "Model Name: " + self.type + ", " + 
-            "Year: " + self.year + ", " + 
-            "Kilometers: " + self.kilometers + ", " + 
-            "Color: " + self.color
+            f"Car Manufacturer: {self.car_make}, "
+            f"Model Name: {self.type}, "
+            f"Year: {self.year}, " 
+            f"Kilometers: {self.kilometers}, "
+            f"Color: {self.color}"
         )
-
 
 class CarDealer:
     def __init__(self, address, city, full_name, id, lat, long, short_name, st, zip):
@@ -50,9 +45,9 @@ class CarDealer:
         self.short_name = short_name
         self.st = st
         self.zip = zip
+    
     def __str__(self):
         return "Dealer name: " + self.full_name
-
 
 class DealerReview:
     def __init__(
@@ -78,15 +73,10 @@ class DealerReview:
         self.car_model = car_model
         self.car_year = car_year
         self.sentiment = sentiment
-
+    
     def __str__(self):
         return (
-            "Review: "
-            + str(self.review)
-            + ","
-            + "Sentiment: "
-            + str(self.sentiment)
-            + ","
-            + "Purchase: "
-            + str(self.purchase)
+            "Review: " + str(self.review) + ", " +
+            "Sentiment: " + str(self.sentiment) + ", " +
+            "Purchase: " + str(self.purchase)
         )

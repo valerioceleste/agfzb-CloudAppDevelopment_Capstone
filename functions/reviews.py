@@ -62,12 +62,18 @@ def post_review():
     # Validate that the required fields are present in the review data
     required_fields = ['id', 'name', 'dealership', 'review', 'purchase', 'purchase_date', 'car_make', 'car_model', 'car_year']
     for field in required_fields:
-        print(f"{field}: {review_data_copy.get(field)}")
-        if field not in review_data_copy:
+        if field not in review_data:
             abort(400, description=f'Missing required field: {field}')
 
     # Save the review data as a new document in the Cloudant database
-    db.create_document(review_data_copy)
+    print("review--------->", review_data)
+    # Ensure review_data is a dictionary
+    if not isinstance(review_data, dict):
+        review_data = json.loads(review_data)  # Parse string as JSON
+        if not isinstance(review_data, dict):
+            abort(400, description='Invalid JSON data')
+
+    db.create_document(review_data)
 
     return jsonify({"message": "Review posted successfully"}), 201
 

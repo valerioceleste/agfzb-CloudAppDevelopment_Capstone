@@ -1,6 +1,6 @@
 {% extends 'djangoapp/base.html' %}
 
-{% block title %}Add Review{% endblock %}
+{% block title %}Add Review{% endblock title %}
 
 {% block content %}
 
@@ -9,7 +9,8 @@
 <br>
     
 <div class="container">
-    <form action="{% url 'djangoapp:add_review' dealer.id %}">
+    <form action="{% url 'djangoapp:add_review' dealer.id %}" method="post"> 
+        {% csrf_token %}
 
         <div class="form-group">
             <label for="content"><b>Enter the review content:</b></label>
@@ -25,9 +26,12 @@
         <div class="form-select">
             <label for="car"><b>Select Your Car ( Make - Model - Year ) : </b></label>
             <select name="car" id="car" class="form-select" required>
-                {% for car in cars %}
-                <option selected value={{car.id}}>{{car.CarMake}} - {{car.name}} - {{car.year|date:"Y" }}</option>
-                {% endfor %}
+            <option value="">Select a car</option> <!-- Blank option -->
+            {% for car in cars %}
+                <option value="{{ car.id }}">
+                    {{ car.car_make.name }} - {{ car.name }} - {{ car.year }}
+                </option>
+            {% endfor %}
             </select>
         </div><br>
         
@@ -35,19 +39,19 @@
             <label for="purchasedate"><b>Select your Purchase Date:</b></label>
             <input class="date-own form-control" style="width: 300px;" type="text" name="purchasedate" id="purchasedate" placeholder="mm/dd/yyyy">
         </div>
+        <button class="btn btn-primary" type="submit">Submit</button> 
     </form>
-    <button class="btn btn-primary" type="submit">Submit</button>
 </div>
 
-    
-
-
 {% endblock content %}
+
 
 {% block script %}
 
 <script type="text/javascript">
-    $('.date-own').datepicker({format: 'mm/dd/yyyy'});
+    $('.date-own').datepicker({
+       format: 'mm/dd/yyyy'
+     });
 </script>
 
 {% endblock script %}
